@@ -19,7 +19,7 @@ Está estructurado bajo el enfoque de **Screaming Architecture**, priorizando la
 ### 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/tu-usuario/growsimple-front.git
+git clone https://github.com/moyascii/growsimple-front.git
 cd growsimple-front
 npm install
 npm run dev
