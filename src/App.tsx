@@ -1,29 +1,20 @@
-import { Container, Typography, Button } from '@mui/material';
+// src/App.tsx
+import { Box, Button, Container, Typography } from '@mui/material';
 import { useState } from 'react';
+import DashboardPage from './pages/dashboard/Dashboard';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [showDashboard, setShowDashboard] = useState(false);
+
+  if (showDashboard) return <DashboardPage />;
 
   return (
-    <Container 
-      maxWidth="sm" 
-      style={{ 
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        minHeight: '100vh',
-        textAlign: 'center'
-      }}
-    >
-      <Typography variant="h3" gutterBottom>
-        ¡Hola, GrowSimple! 🚀
+    <Container maxWidth="sm" sx={{ textAlign: 'center', pt: 10 }}>
+      <Typography variant="h4" gutterBottom>
+        Bienvenido a GrowSimple
       </Typography>
-      <Typography variant="body1" gutterBottom>
-        Este es un ejemplo base usando React, TypeScript y MUI.
-      </Typography>
-      <Button variant="contained" onClick={() => setCount(count + 1)}>
-        Contador: {count}
+      <Button variant="contained" onClick={() => setShowDashboard(true)}>
+        Ir al Dashboard
       </Button>
     </Container>
   );
