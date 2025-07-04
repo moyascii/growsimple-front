@@ -24,3 +24,4 @@ cd growsimple-front
 npm install
 npm run dev
 http://localhost:5173
+hola
