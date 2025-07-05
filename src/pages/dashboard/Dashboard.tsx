@@ -3,37 +3,60 @@ import { Box, Typography, Button, IconButton, Chip, Avatar } from '@mui/material
 import Sidebar from '../../shared/ui/sidebar';
 import PageHeader from '../../shared/ui/PageHeader';
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import ListIcon from '@mui/icons-material/ViewList';
 import GridViewIcon from '@mui/icons-material/GridView';
 import AddIcon from '@mui/icons-material/Add';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import AssignmentIcon from '@mui/icons-material/Assignment';
-import GroupWorkIcon from '@mui/icons-material/GroupWork';
-import BrushIcon from '@mui/icons-material/Brush';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-import CampaignIcon from '@mui/icons-material/Campaign';
-import ScheduleIcon from '@mui/icons-material/Schedule';
+import ResearchIcon from '../../assets/svg/research-ico.svg';
+import ProjectsIcon from '../../assets/svg/projects-ico.svg';
+import BrandIcon from '../../assets/svg/brand-ico.svg';
+import PlanIcon from '../../assets/svg/plan-ico.svg';
+import CampaignsIcon from '../../assets/svg/campaigns-ico.svg';
+import ScheduleIcon from '../../assets/svg/schedule-ico.svg';
+
+const breadcrumbNameMap: Record<string, string> = {
+  '/dashboard': 'Dashboard',
+  '/projects': 'Projects',
+};
+
+function useBreadcrumbs() {
+  const location = useLocation();
+  const pathnames = location.pathname.split('/').filter((x) => x);
+  const breadcrumbs = pathnames.map((value, index) => {
+    const to = `/${pathnames.slice(0, index + 1).join('/')}`;
+    return {
+      label: breadcrumbNameMap[to] || value.charAt(0).toUpperCase() + value.slice(1),
+      href: to,
+    };
+  });
+  if (breadcrumbs.length === 0) {
+    return [{ label: 'Dashboard', href: '/dashboard' }];
+  }
+  return breadcrumbs;
+}
 
 const projectRows = [
   {
-    icon: <AssignmentIcon sx={{ fontSize: 32, color: '#23283A' }} />, name: 'Projects', desc: 'Lorem ipsum dolor sit amet.', started: 3, inProgress: 2, completed: 1
+    icon: <img src={ProjectsIcon} style={{ width: 32, height: 32, filter: 'brightness(0) saturate(100%) invert(6%) sepia(6%) saturate(1034%) hue-rotate(200deg) brightness(95%) contrast(95%)' }} />, name: 'Projects', desc: 'Lorem ipsum dolor sit amet.', started: 3, inProgress: 2, completed: 1
   },
   {
-    icon: <GroupWorkIcon sx={{ fontSize: 32, color: '#23283A' }} />, name: 'Research', desc: 'Lorem ipsum dolor sit amet.', started: 2, inProgress: 1, completed: 0
+    icon: <img src={ResearchIcon} style={{ width: 32, height: 32, filter: 'brightness(0) saturate(100%) invert(8%) sepia(8%) saturate(1034%) hue-rotate(200deg) brightness(95%) contrast(95%)' }} />, name: 'Research', desc: 'Lorem ipsum dolor sit amet.', started: 2, inProgress: 1, completed: 0
   },
   {
-    icon: <BrushIcon sx={{ fontSize: 32, color: '#23283A' }} />, name: 'Branding', desc: 'Lorem ipsum dolor sit amet.', started: 3, inProgress: 2, completed: 1
+    icon: <img src={BrandIcon} style={{ width: 32, height: 32, filter: 'brightness(0) saturate(100%) invert(6%) sepia(6%) saturate(1034%) hue-rotate(200deg) brightness(95%) contrast(95%)' }} />, name: 'Branding', desc: 'Lorem ipsum dolor sit amet.', started: 3, inProgress: 2, completed: 1
   },
   {
-    icon: <CalendarTodayIcon sx={{ fontSize: 32, color: '#23283A' }} />, name: 'Planning', desc: 'Lorem ipsum dolor sit amet.', started: 1, inProgress: 4, completed: 1
+    icon: <img src={PlanIcon} style={{ width: 32, height: 32, filter: 'brightness(0) saturate(100%) invert(6%) sepia(6%) saturate(1034%) hue-rotate(200deg) brightness(95%) contrast(95%)' }} />, name: 'Planning', desc: 'Lorem ipsum dolor sit amet.', started: 1, inProgress: 4, completed: 1
   },
   {
-    icon: <CampaignIcon sx={{ fontSize: 32, color: '#23283A' }} />, name: 'Campaigns', desc: 'Lorem ipsum dolor sit amet.', started: 4, inProgress: 5, completed: 2
+    icon: <img src={CampaignsIcon} style={{ width: 32, height: 32, filter: 'brightness(0) saturate(100%) invert(6%) sepia(6%) saturate(1034%) hue-rotate(200deg) brightness(95%) contrast(95%)' }} />, name: 'Campaigns', desc: 'Lorem ipsum dolor sit amet.', started: 4, inProgress: 5, completed: 2
   },
   {
-    icon: <ScheduleIcon sx={{ fontSize: 32, color: '#23283A' }} />, name: 'Schedule', desc: 'Lorem ipsum dolor sit amet.', started: 1, inProgress: 0, completed: 0
+    icon: <img src={ScheduleIcon} style={{ width: 32, height: 32, filter: 'brightness(0) saturate(100%) invert(6%) sepia(6%) saturate(1034%) hue-rotate(200deg) brightness(95%) contrast(95%)' }} />, name: 'Schedule', desc: 'Lorem ipsum dolor sit amet.', started: 1, inProgress: 0, completed: 0
   },
 ];
 
@@ -58,12 +81,13 @@ const campaignCards = [
 
 const DashboardPage = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const breadcrumbs = useBreadcrumbs();
 
   return (
     <Box sx={{ display: 'flex' }}>
       <Sidebar onCollapseChange={setSidebarCollapsed} />
       <Box component="main" sx={{ flexGrow: 1, width: '100%' }}>
-        <PageHeader title="Dashboard" breadcrumbs={[]} />
+        <PageHeader title="Dashboard" breadcrumbs={breadcrumbs} />
         <Box sx={{ p: 3, pt: 0 }}>
           {/* Encabezado */}
           <Typography variant="h4" sx={{ mt: 3, fontSize: '2rem', fontWeight: 700 }}>
@@ -129,7 +153,7 @@ const DashboardPage = () => {
           {/* Sección de campañas activas */}
           <Box sx={{ mt: 5, background: '#fff', borderRadius: 3, p: 2, border: '1px solid #F1F5F9' }}>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-              <CampaignIcon sx={{ color: '#FFD600', fontSize: 28, mr: 1 }} />
+              <img src={CampaignsIcon} style={{ width: 28, height: 28, filter: 'brightness(0) saturate(100%) invert(6%) sepia(6%) saturate(1034%) hue-rotate(200deg) brightness(95%) contrast(95%)', mr: 1 }} />
               <Typography sx={{ fontWeight: 700, fontSize: '1.15rem', color: '#23283A', mr: 1 }}>
                 Active Campaign <span style={{ fontWeight: 400 }}> (2)</span>
               </Typography>

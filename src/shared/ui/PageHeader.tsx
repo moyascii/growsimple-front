@@ -2,20 +2,21 @@ import { Box, Typography, Breadcrumbs, IconButton, Avatar, Divider, Link as MuiL
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import React from 'react';
 import ProjectsBanner from './ProjectsBanner';
+import { Link as RouterLink } from 'react-router-dom';
 
-interface BreadcrumbItem {
+interface Breadcrumb {
   label: string;
-  href?: string;
+  href: string;
 }
 
 interface PageHeaderProps {
   title: string;
-  breadcrumbs?: BreadcrumbItem[];
+  breadcrumbs?: Breadcrumb[];
   avatarUrl?: string;
   userName?: string;
 }
 
-const PageHeader: React.FC<PageHeaderProps> = ({ title, breadcrumbs, avatarUrl, userName }) => {
+const PageHeader: React.FC<PageHeaderProps> = ({ title, breadcrumbs = [], avatarUrl, userName }) => {
   return (
     <Box sx={{ mt: 3, mb: 3, position: 'relative', px: 3 }}>
       {/* Título sobresaliente a la izquierda */}
@@ -58,26 +59,26 @@ const PageHeader: React.FC<PageHeaderProps> = ({ title, breadcrumbs, avatarUrl, 
       {/* Breadcrumbs */}
       {breadcrumbs && breadcrumbs.length > 0 && (
         <Box sx={{ mt: 2 }}>
-          <Breadcrumbs aria-label="breadcrumb">
-            {breadcrumbs.map((item, idx) =>
-              item.href && idx !== breadcrumbs.length - 1 ? (
+          <Breadcrumbs aria-label="breadcrumb" sx={{ mb: 1 }}>
+            {breadcrumbs.map((crumb, idx) =>
+              idx < breadcrumbs.length - 1 ? (
                 <MuiLink
-                  key={item.label + idx}
-                  color="text.secondary"
-                  fontWeight={600}
+                  key={crumb.href}
+                  color="inherit"
+                  to={crumb.href}
+                  component={RouterLink}
                   underline="hover"
-                  href={item.href}
-                  sx={{ cursor: 'pointer' }}
+                  sx={{ fontWeight: 500 }}
                 >
-                  {item.label}
+                  {crumb.label}
                 </MuiLink>
               ) : (
                 <Typography
-                  key={item.label + idx}
+                  key={crumb.href}
                   color="text.primary"
                   fontWeight={700}
                 >
-                  {item.label}
+                  {crumb.label}
                 </Typography>
               )
             )}
@@ -86,7 +87,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ title, breadcrumbs, avatarUrl, 
       )}
       {/* Línea divisoria */}
       <Divider sx={{ mt: 2 }} />
-    <ProjectsBanner />
+      <ProjectsBanner />
     </Box>
   );
 };
