@@ -12,6 +12,8 @@ import AnalyticsIcon from '../../assets/svg/analytics-ico.svg';
 import IntegrationsIcon from '../../assets/svg/integrations-ico.svg';
 import TeamsIcon from '../../assets/svg/teams-ico.svg';
 import TemplatesIcon from '../../assets/svg/templates-ico.svg';
+import ProplanCollapsed from '../../assets/svg/proplan-collapse-ico.svg';
+import RocketIcon from '../../assets/svg/rocket-ico.svg';
 
 const drawerWidth = 240;
 const collapsedWidth = 64;
@@ -257,8 +259,23 @@ const Sidebar = ({ onCollapseChange }: SidebarProps) => {
                 }
               }}
             >
-              Product Tutorials&nbsp;🚀
+              Product Tutorials 
+              <img src={RocketIcon} alt="Rocket" width={20} height={20} />
             </Box>
+          </Box>
+        )}
+        {isCollapsed &&(
+          <Box sx={{ display: 'flex', justifyContent: 'center', mb: 1, mx: 2 }}>
+            <Typography variant="body2" sx={{ color: 'white', mb: 1 }}>
+              <img src={RocketIcon} alt="Rocket" width={30} height={30} />
+            </Typography>
+          </Box>
+        )}
+        {isCollapsed &&(
+          <Box sx={{ display: 'flex', justifyContent: 'center', mb: 1, mx: 2 }}>
+            <Typography variant="body2" sx={{ color: 'white', mb: 1 }}>
+              <img src={ProplanCollapsed} alt="Pro Plan" width={50} height={50} />
+            </Typography>
           </Box>
         )}
         {/* Cuadro de suscripción Pro Plan */}
