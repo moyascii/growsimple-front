@@ -1,6 +1,7 @@
 import { Box, Typography, Breadcrumbs, IconButton, Avatar, Divider, Link as MuiLink } from '@mui/material';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import React from 'react';
+import ProjectsBanner from './ProjectsBanner';
 
 interface BreadcrumbItem {
   label: string;
@@ -85,6 +86,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ title, breadcrumbs, avatarUrl, 
       )}
       {/* Línea divisoria */}
       <Divider sx={{ mt: 2 }} />
+    <ProjectsBanner />
     </Box>
   );
 };

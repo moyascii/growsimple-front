@@ -15,6 +15,7 @@ import TemplatesIcon from '../../assets/svg/templates-ico.svg';
 
 const drawerWidth = 240;
 const collapsedWidth = 64;
+const conplan = false; // Cambia a true si quieres ocultar el cuadro
 
 interface SidebarProps {
   onCollapseChange?: (collapsed: boolean) => void;
@@ -190,9 +191,11 @@ const Sidebar = ({ onCollapseChange }: SidebarProps) => {
         </ListItemButton>
       </List>
       <Divider sx={{ my: 2, borderColor: 'rgba(255,255,255,0.08)' }} />
-      <Typography variant="caption" sx={{ color: '#94A3B8', textTransform: 'uppercase', letterSpacing: 1, pl: 3, mb: 1, fontWeight: 700 }}>
-        Other
-      </Typography>
+      {!isCollapsed && (
+        <Typography variant="caption" sx={{ color: '#94A3B8', textTransform: 'uppercase', letterSpacing: 1, pl: 3, mb: 1, fontWeight: 700 }}>
+          Other
+        </Typography>
+      )}
       <List>
         <ListItemButton sx={{ minHeight: 48, justifyContent: isCollapsed ? 'center' : 'flex-start', px: isCollapsed ? 1 : 2 }}>
           <ListItemIcon sx={{ color: 'white', minWidth: isCollapsed ? 0 : 40 }}>
@@ -219,6 +222,92 @@ const Sidebar = ({ onCollapseChange }: SidebarProps) => {
           {!isCollapsed && <ListItemText primary="Templates" />}
         </ListItemButton>
       </List>
+      {/* Agrupar botón y Pro Plan al fondo */}
+      <Box sx={{ mt: 'auto' }}>
+        {/* Botón Product Tutorials */}
+        {!isCollapsed && (
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              mb: 1,
+              mx: 2
+            }}
+          >
+            <Box
+              component="button"
+              sx={{
+                background: 'linear-gradient(90deg, #83F888 0%, #3CB5B9 100%)',
+                border: 'none',
+                borderRadius: '999px',
+                px: 4,
+                py: 1.5,
+                color: '#111629',
+                fontWeight: 700,
+                fontSize: '0.9rem',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 1,
+                cursor: 'pointer',
+                boxShadow: 'none',
+                transition: 'filter 0.2s',
+                whiteSpace: 'nowrap',
+                '&:hover': {
+                  filter: 'brightness(0.95)'
+                }
+              }}
+            >
+              Product Tutorials&nbsp;🚀
+            </Box>
+          </Box>
+        )}
+        {/* Cuadro de suscripción Pro Plan */}
+        {!conplan && !isCollapsed && (
+          <Box
+            sx={{
+              backgroundColor: '#353C4A',
+              borderRadius: 4,
+              p: 2,
+              mx: 2,
+              mb: 2,
+              mt: 0,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+              boxShadow: '0 2px 8px 0 rgba(0,0,0,0.08)'
+            }}
+          >
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+              <img
+                src="/src/assets/images/proplan-ico.png"
+                alt="Pro Plan"
+                width={32}
+                height={32}
+                style={{ marginRight: 8 }}
+              />
+              <Typography variant="subtitle1" sx={{ color: 'white', fontWeight: 700 }}>
+                Pro Plan
+              </Typography>
+            </Box>
+            <Typography variant="body2" sx={{ color: 'white', mb: 1 }}>
+              Subscription expires<br />may 1, 2025
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                color: '#FFCA4A',
+                fontWeight: 700,
+                cursor: 'pointer',
+                textDecoration: 'none'
+              }}
+              component="a"
+              href="#"
+            >
+              Manage
+            </Typography>
+          </Box>
+        )}
+      </Box>
     </Drawer>
   );
 };

@@ -19,9 +19,9 @@ const DashboardPage = () => {
       <Box component="main" sx={{ flexGrow: 1, width: '100%' }}>
         <PageHeader title="Dashboard" breadcrumbs={breadcrumbs} />
 
-        <Box sx={{ p: 3 }}>
-          <Typography variant="h4" sx={{ mt: 3 }}>
-            Dashboard
+        <Box sx={{ p: 3, pt:0 }}>
+          <Typography variant="h4" sx={{ mt: 3, fontSize: '2rem', fontWeight: 700 }}>
+          Hey, Kris! What Are We Planning Today? ✨
           </Typography>
 
           <Box sx={{ mt: 5 }}>
