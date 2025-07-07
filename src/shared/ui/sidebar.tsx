@@ -232,7 +232,7 @@ const Sidebar = ({ onCollapseChange }: SidebarProps) => {
         {isCollapsed &&(
           <Box sx={{ display: 'flex', justifyContent: 'center', mb: 1, mx: 2 }}>
             <Typography variant="body2" sx={{ color: 'white', mb: 1 }}>
-              <GSIconProplanCollapse size="large" />
+              <GSIconProplanCollapse size="large" filter="none" />
             </Typography>
           </Box>
         )}
