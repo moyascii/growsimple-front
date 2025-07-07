@@ -21,7 +21,19 @@
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    /* Paths */
+    "baseUrl": ".",
+    "paths": {
+      "@shared/*": ["src/shared/*"],
+      "@components/*": ["src/shared/components/*"],
+      "@inputs": ["src/shared/components/inputs/index.ts"],
+      "@inputs/*": ["src/shared/components/inputs/*"],
+      "@icons": ["src/shared/components/icons/index.ts"],
+      "@icons/*": ["src/shared/components/icons/*"]
+    }
   },
+  "types": ["node"],
   "include": ["src"]
 }

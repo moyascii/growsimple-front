@@ -1,8 +1,10 @@
-import { Box, Typography, Button } from '@mui/material';
+import { Box } from '@mui/material';
 import Sidebar from '../../shared/ui/sidebar';
 import PageHeader from '../../shared/ui/PageHeader';
-import AddIcon from '@mui/icons-material/AddBoxOutlined';
+import { GSIconAddBox } from '@icons';
 import { useLocation, Link as RouterLink } from 'react-router-dom';
+import { GSButtonPrimary } from '@inputs';
+import { GSTextHeading, GSTextDescription } from '@components/data-display';
 
 const breadcrumbNameMap: Record<string, string> = {
   '/dashboard': 'Dashboard',
@@ -33,41 +35,30 @@ const Projects = () => {
       <Box component="main" sx={{ flexGrow: 1, width: '100%' }}>
         <PageHeader title="Projects" breadcrumbs={breadcrumbs} />
         <Box sx={{ p: 5 }}>
-          <Typography variant="h3" sx={{ fontWeight: 500, mb: 2, color: '#23283A', fontSize: '2.5rem' }}>
+          <GSTextHeading variant="h3">
             Standard Lorem Ipsum projects
-          </Typography>
-          <Typography sx={{ color: '#94A3B8', fontSize: '1.2rem', mb: 0.5 }}>
+          </GSTextHeading>
+          <GSTextDescription size="large" sx={{ mb: 0.5 }}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </Typography>
-          <Typography sx={{ color: '#94A3B8', fontSize: '1.2rem', mb: 0.5 }}>
+          </GSTextDescription>
+          <GSTextDescription size="large" sx={{ mb: 0.5 }}>
             Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-          </Typography>
-          <Typography sx={{ color: '#94A3B8', fontSize: '1.2rem', mb: 4 }}>
+          </GSTextDescription>
+          <GSTextDescription size="large" sx={{ mb: 4 }}>
             dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          </Typography>
-          <Button
-            variant="contained"
-            startIcon={<AddIcon />}
+          </GSTextDescription>
+          <GSButtonPrimary
+            startIcon={<GSIconAddBox />}
             component={RouterLink}
             to="/projects/new"
+            size="large"
             sx={{
-              background: 'linear-gradient(90deg, #83F888 0%, #3CB5B9 100%)',
-              color: '#111629',
-              fontWeight: 700,
-              fontSize: '1.15rem',
-              borderRadius: 8,
               px: 4,
-              py: 1.5,
-              boxShadow: 'none',
-              textTransform: 'none',
-              '&:hover': {
-                background: 'linear-gradient(90deg, #83F888 0%, #3CB5B9 100%)',
-                filter: 'brightness(0.97)'
-              }
+              py: 1.5
             }}
           >
             Add New Project
-          </Button>
+          </GSButtonPrimary>
         </Box>
       </Box>
     </Box>

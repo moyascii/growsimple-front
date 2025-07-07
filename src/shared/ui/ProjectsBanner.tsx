@@ -1,6 +1,5 @@
-import React from 'react';
 import { Box, Typography } from '@mui/material';
-import BannerIco from '../../assets/svg/baner-ico-stadistics.svg';
+import { GSIconBanner } from '@icons';
 
 const ProjectsBanner = () => (
   <Box
@@ -17,11 +16,7 @@ const ProjectsBanner = () => (
       minHeight: 64,
     }}
   >
-    <img
-      src={BannerIco}
-      alt="Projects Icon"
-      style={{ width: 56, height: 56, marginRight: 20 }}
-    />
+    <GSIconBanner size="large" sx={{ width: 56, height: 56, marginRight: 20 }} filter="none" />
     <Box>
       <Typography component="span" sx={{ color: '#FFCA4A', fontWeight: 700, fontSize: '1.3rem', mr: 1 }}>
         Projects

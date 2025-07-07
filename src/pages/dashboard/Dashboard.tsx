@@ -1,22 +1,28 @@
 // src/dashboard/pages/DashboardPage.tsx
-import { Box, Typography, Button, IconButton, Chip, Avatar } from '@mui/material';
+import { Box, Chip, Avatar } from '@mui/material';
 import Sidebar from '../../shared/ui/sidebar';
 import PageHeader from '../../shared/ui/PageHeader';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import ListIcon from '@mui/icons-material/ViewList';
-import GridViewIcon from '@mui/icons-material/GridView';
-import AddIcon from '@mui/icons-material/Add';
-import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-import ResearchIcon from '../../assets/svg/research-ico.svg';
-import ProjectsIcon from '../../assets/svg/projects-ico.svg';
-import BrandIcon from '../../assets/svg/brand-ico.svg';
-import PlanIcon from '../../assets/svg/plan-ico.svg';
-import CampaignsIcon from '../../assets/svg/campaigns-ico.svg';
-import ScheduleIcon from '../../assets/svg/schedule-ico.svg';
+import { 
+  GSIconList, 
+  GSIconGridView, 
+  GSIconAdd, 
+  GSIconRocket, 
+  GSIconTrendingUp, 
+  GSIconCheckCircle, 
+  GSIconCalendar,
+  GSIconResearch,
+  GSIconProjects,
+  GSIconBrand,
+  GSIconPlan,
+  GSIconCampaigns,
+  GSIconSchedule
+} from '@icons';
+
+import { GSButtonView, GSButtonPrimary, GSButtonSecondary } from '@inputs';
+import { GSTextHeading, GSTextBody, GSTextStats, GSTextSection, GSTextDate, GSTextUser } from '@components/data-display';
+
 
 const breadcrumbNameMap: Record<string, string> = {
   '/dashboard': 'Dashboard',
@@ -41,22 +47,22 @@ function useBreadcrumbs() {
 
 const projectRows = [
   {
-    icon: <img src={ProjectsIcon} style={{ width: 32, height: 32, filter: 'brightness(0) saturate(100%) invert(6%) sepia(6%) saturate(1034%) hue-rotate(200deg) brightness(95%) contrast(95%)' }} />, name: 'Projects', desc: 'Lorem ipsum dolor sit amet.', started: 3, inProgress: 2, completed: 1
+    icon: <GSIconProjects size="large" />, name: 'Projects', desc: 'Lorem ipsum dolor sit amet.', started: 3, inProgress: 2, completed: 1
   },
   {
-    icon: <img src={ResearchIcon} style={{ width: 32, height: 32, filter: 'brightness(0) saturate(100%) invert(8%) sepia(8%) saturate(1034%) hue-rotate(200deg) brightness(95%) contrast(95%)' }} />, name: 'Research', desc: 'Lorem ipsum dolor sit amet.', started: 2, inProgress: 1, completed: 0
+    icon: <GSIconResearch size="large" filter="brightness(0) saturate(100%) invert(8%) sepia(8%) saturate(1034%) hue-rotate(200deg) brightness(95%) contrast(95%)" />, name: 'Research', desc: 'Lorem ipsum dolor sit amet.', started: 2, inProgress: 1, completed: 0
   },
   {
-    icon: <img src={BrandIcon} style={{ width: 32, height: 32, filter: 'brightness(0) saturate(100%) invert(6%) sepia(6%) saturate(1034%) hue-rotate(200deg) brightness(95%) contrast(95%)' }} />, name: 'Branding', desc: 'Lorem ipsum dolor sit amet.', started: 3, inProgress: 2, completed: 1
+    icon: <GSIconBrand size="large" />, name: 'Branding', desc: 'Lorem ipsum dolor sit amet.', started: 3, inProgress: 2, completed: 1
   },
   {
-    icon: <img src={PlanIcon} style={{ width: 32, height: 32, filter: 'brightness(0) saturate(100%) invert(6%) sepia(6%) saturate(1034%) hue-rotate(200deg) brightness(95%) contrast(95%)' }} />, name: 'Planning', desc: 'Lorem ipsum dolor sit amet.', started: 1, inProgress: 4, completed: 1
+    icon: <GSIconPlan size="large" />, name: 'Planning', desc: 'Lorem ipsum dolor sit amet.', started: 1, inProgress: 4, completed: 1
   },
   {
-    icon: <img src={CampaignsIcon} style={{ width: 32, height: 32, filter: 'brightness(0) saturate(100%) invert(6%) sepia(6%) saturate(1034%) hue-rotate(200deg) brightness(95%) contrast(95%)' }} />, name: 'Campaigns', desc: 'Lorem ipsum dolor sit amet.', started: 4, inProgress: 5, completed: 2
+    icon: <GSIconCampaigns size="large" />, name: 'Campaigns', desc: 'Lorem ipsum dolor sit amet.', started: 4, inProgress: 5, completed: 2
   },
   {
-    icon: <img src={ScheduleIcon} style={{ width: 32, height: 32, filter: 'brightness(0) saturate(100%) invert(6%) sepia(6%) saturate(1034%) hue-rotate(200deg) brightness(95%) contrast(95%)' }} />, name: 'Schedule', desc: 'Lorem ipsum dolor sit amet.', started: 1, inProgress: 0, completed: 0
+    icon: <GSIconSchedule size="large" />, name: 'Schedule', desc: 'Lorem ipsum dolor sit amet.', started: 1, inProgress: 0, completed: 0
   },
 ];
 
@@ -80,7 +86,7 @@ const campaignCards = [
 ];
 
 const DashboardPage = () => {
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [, setSidebarCollapsed] = useState(false);
   const breadcrumbs = useBreadcrumbs();
 
   return (
@@ -90,42 +96,19 @@ const DashboardPage = () => {
         <PageHeader title="Dashboard" breadcrumbs={breadcrumbs} />
         <Box sx={{ p: 3, pt: 0 }}>
           {/* Encabezado */}
-          <Typography variant="h4" sx={{ mt: 3, fontSize: '2rem', fontWeight: 700 }}>
+          <GSTextHeading variant="h4" sx={{ mt: 3 }}>
             Hey, <span style={{ color: '#23283A', fontWeight: 900 }}>Kris!</span> What Are We Planning Today? <span role="img" aria-label="sparkles">✨</span>
-          </Typography>
+          </GSTextHeading>
           {/* Botones superiores */}
           <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 2, mt: 3 }}>
-            <Button
-              variant="outlined"
-              startIcon={<ListIcon />}
-              sx={{
-                background: '#FFF8E1',
-                color: '#23283A',
-                border: 'none',
-                borderRadius: 3,
-                px: 2.5,
-                fontWeight: 700,
-                boxShadow: 'none',
-                '&:hover': { background: '#FFF3C0', border: 'none' }
-              }}
-            >
-              List View
-            </Button>
-            <Button
-              variant="contained"
-              startIcon={<AddIcon />}
-              sx={{
-                background: 'linear-gradient(90deg, #3CB5B9 0%, #83F888 100%)',
-                color: '#fff',
-                borderRadius: 3,
-                px: 2.5,
-                fontWeight: 700,
-                boxShadow: 'none',
-                '&:hover': { background: 'linear-gradient(90deg, #3CB5B9 0%, #83F888 100%)', opacity: 0.95 }
-              }}
-            >
+
+            <GSButtonView startIcon={<GSIconList />}>
+              List Views
+            </GSButtonView>
+
+            <GSButtonPrimary startIcon={<GSIconAdd />}>
               Add New Project
-            </Button>
+            </GSButtonPrimary>
           </Box>
           {/* Tabla de proyectos */}
           <Box sx={{ mt: 4, borderRadius: 3, overflow: 'hidden', border: '1px solid #F1F5F9', background: '#fff' }}>
@@ -133,19 +116,19 @@ const DashboardPage = () => {
               <Box key={row.name} sx={{ display: 'flex', alignItems: 'center', px: 3, py: 2, borderBottom: idx !== projectRows.length - 1 ? '1px solid #F1F5F9' : 'none' }}>
                 <Box sx={{ minWidth: 48, mr: 2 }}>{row.icon}</Box>
                 <Box sx={{ flex: 1 }}>
-                  <Typography sx={{ fontWeight: 700, color: '#23283A', fontSize: '1.1rem' }}>{row.name}</Typography>
-                  <Typography sx={{ color: '#94A3B8', fontSize: '0.95rem' }}>{row.desc}</Typography>
+                  <GSTextBody size="large" sx={{ fontWeight: 700 }}>{row.name}</GSTextBody>
+                  <GSTextDate size="medium">{row.desc}</GSTextDate>
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center', minWidth: 120, justifyContent: 'center' }}>
-                  <RocketLaunchIcon sx={{ color: '#23283A', mr: 0.5 }} />
-                  <Typography sx={{ fontWeight: 700, color: '#23283A', mr: 1 }}>Started</Typography>
-                  <Typography sx={{ fontWeight: 700, color: '#23283A', mr: 2 }}>{row.started}</Typography>
-                  <TrendingUpIcon sx={{ color: '#23283A', mr: 0.5 }} />
-                  <Typography sx={{ fontWeight: 700, color: '#23283A', mr: 1 }}>In-Progress</Typography>
-                  <Typography sx={{ fontWeight: 700, color: '#23283A', mr: 2 }}>{row.inProgress}</Typography>
-                  <CheckCircleIcon sx={{ color: '#23283A', mr: 0.5 }} />
-                  <Typography sx={{ fontWeight: 700, color: '#23283A', mr: 1 }}>Completed</Typography>
-                  <Typography sx={{ fontWeight: 700, color: '#23283A' }}>{row.completed}</Typography>
+                  <GSIconRocket sx={{ color: '#23283A', mr: 0.5 }} />
+                  <GSTextStats size="medium" sx={{ mr: 1 }}>Started</GSTextStats>
+                  <GSTextStats size="medium" sx={{ mr: 2 }}>{row.started}</GSTextStats>
+                  <GSIconTrendingUp sx={{ color: '#23283A', mr: 0.5 }} />
+                  <GSTextStats size="medium" sx={{ mr: 1 }}>In-Progress</GSTextStats>
+                  <GSTextStats size="medium" sx={{ mr: 2 }}>{row.inProgress}</GSTextStats>
+                  <GSIconCheckCircle sx={{ color: '#23283A', mr: 0.5 }} />
+                  <GSTextStats size="medium" sx={{ mr: 1 }}>Completed</GSTextStats>
+                  <GSTextStats size="medium">{row.completed}</GSTextStats>
                 </Box>
               </Box>
             ))}
@@ -153,12 +136,12 @@ const DashboardPage = () => {
           {/* Sección de campañas activas */}
           <Box sx={{ mt: 5, background: '#fff', borderRadius: 3, p: 2, border: '1px solid #F1F5F9' }}>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-              <img src={CampaignsIcon} style={{ width: 28, height: 28, filter: 'brightness(0) saturate(100%) invert(6%) sepia(6%) saturate(1034%) hue-rotate(200deg) brightness(95%) contrast(95%)', mr: 1 }} />
-              <Typography sx={{ fontWeight: 700, fontSize: '1.15rem', color: '#23283A', mr: 1 }}>
+              <GSIconCampaigns size="medium" sx={{ marginRight: 8 }} />
+              <GSTextSection size="large" sx={{ mr: 1 }}>
                 Active Campaign <span style={{ fontWeight: 400 }}> (2)</span>
-              </Typography>
+              </GSTextSection>
               <Box sx={{ flex: 1 }} />
-              <Button
+              {/* <Button
                 variant="outlined"
                 startIcon={<GridViewIcon />}
                 sx={{
@@ -174,22 +157,13 @@ const DashboardPage = () => {
                 }}
               >
                 Grid View
-              </Button>
-              <Button
-                variant="outlined"
-                sx={{
-                  background: '#F1F5F9',
-                  color: '#23283A',
-                  border: 'none',
-                  borderRadius: 3,
-                  px: 2,
-                  fontWeight: 700,
-                  boxShadow: 'none',
-                  '&:hover': { background: '#E2E8F0', border: 'none' }
-                }}
-              >
+              </Button> */}
+              <GSButtonView startIcon={<GSIconGridView />}>
+                Grid View
+              </GSButtonView>
+              <GSButtonSecondary>
                 All Campaign
-              </Button>
+              </GSButtonSecondary>
             </Box>
             <Box sx={{ display: 'flex', gap: 2 }}>
               {campaignCards.map((card, idx) => (
@@ -200,16 +174,16 @@ const DashboardPage = () => {
                       f in {card.social}
                     </Box>
                   </Box>
-                  <Typography sx={{ fontWeight: 700, fontSize: '1.1rem', color: '#23283A', mb: 1 }}>
+                  <GSTextBody size="large" sx={{ fontWeight: 700, mb: 1 }}>
                     {card.title}
-                  </Typography>
+                  </GSTextBody>
                   <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                    <CalendarTodayIcon sx={{ color: '#94A3B8', fontSize: 18, mr: 0.5 }} />
-                    <Typography sx={{ color: '#94A3B8', fontSize: '0.95rem' }}>{card.date}</Typography>
+                    <GSIconCalendar sx={{ color: '#94A3B8', fontSize: 18, mr: 0.5 }} />
+                    <GSTextDate size="medium">{card.date}</GSTextDate>
                   </Box>
                   <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
                     <Avatar src={card.avatar} sx={{ width: 28, height: 28, mr: 1 }} />
-                    <Typography sx={{ color: '#23283A', fontWeight: 700, fontSize: '1rem' }}>{card.name}</Typography>
+                    <GSTextUser size="medium">{card.name}</GSTextUser>
                   </Box>
                 </Box>
               ))}

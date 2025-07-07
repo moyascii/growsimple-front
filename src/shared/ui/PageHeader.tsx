@@ -1,5 +1,5 @@
 import { Box, Typography, Breadcrumbs, IconButton, Avatar, Divider, Link as MuiLink } from '@mui/material';
-import NotificationsIcon from '@mui/icons-material/Notifications';
+import { GSIconNotifications } from '@icons';
 import React from 'react';
 import ProjectsBanner from './ProjectsBanner';
 import { Link as RouterLink } from 'react-router-dom';
@@ -51,7 +51,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ title, breadcrumbs = [], avatar
       <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', minHeight: 64 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <IconButton>
-            <NotificationsIcon />
+            <GSIconNotifications />
           </IconButton>
           <Avatar alt={userName || 'Usuario'} src={avatarUrl || ''} />
         </Box>
