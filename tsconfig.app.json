@@ -31,7 +31,9 @@
       "@inputs": ["src/shared/components/inputs/index.ts"],
       "@inputs/*": ["src/shared/components/inputs/*"],
       "@icons": ["src/shared/components/icons/index.ts"],
-      "@icons/*": ["src/shared/components/icons/*"]
+      "@icons/*": ["src/shared/components/icons/*"],
+      "@pages": ["src/pages/index.ts"],
+      "@pages/*": ["src/pages/*"]
     }
   },
   "types": ["node"],
