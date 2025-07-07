@@ -1,8 +1,9 @@
 import { Box, Typography, Breadcrumbs, IconButton, Avatar, Divider, Link as MuiLink } from '@mui/material';
 import { GSIconNotifications } from '@icons';
-import React from 'react';
+import React, { useState } from 'react';
 import ProjectsBanner from './ProjectsBanner';
 import { Link as RouterLink } from 'react-router-dom';
+import MyProfile from '../../pages/profile/MyProfile';
 
 interface Breadcrumb {
   label: string;
@@ -17,6 +18,7 @@ interface PageHeaderProps {
 }
 
 const PageHeader: React.FC<PageHeaderProps> = ({ title, breadcrumbs = [], avatarUrl, userName }) => {
+  const [openProfile, setOpenProfile] = useState(false);
   return (
     <Box sx={{ mt: 3, mb: 3, position: 'relative', px: 3 }}>
       {/* Título sobresaliente a la izquierda */}
@@ -53,7 +55,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ title, breadcrumbs = [], avatar
           <IconButton>
             <GSIconNotifications />
           </IconButton>
-          <Avatar alt={userName || 'Usuario'} src={avatarUrl || ''} />
+          <Avatar alt={userName || 'Usuario'} src={avatarUrl || ''} onClick={() => setOpenProfile(true)} sx={{ cursor: 'pointer' }} />
         </Box>
       </Box>
       {/* Breadcrumbs */}
@@ -88,6 +90,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ title, breadcrumbs = [], avatar
       {/* Línea divisoria */}
       <Divider sx={{ mt: 2 }} />
       <ProjectsBanner />
+      <MyProfile open={openProfile} onClose={() => setOpenProfile(false)} />
     </Box>
   );
 };

@@ -141,23 +141,6 @@ const DashboardPage = () => {
                 Active Campaign <span style={{ fontWeight: 400 }}> (2)</span>
               </GSTextSection>
               <Box sx={{ flex: 1 }} />
-              {/* <Button
-                variant="outlined"
-                startIcon={<GridViewIcon />}
-                sx={{
-                  background: '#FFF8E1',
-                  color: '#23283A',
-                  border: 'none',
-                  borderRadius: 3,
-                  px: 2,
-                  fontWeight: 700,
-                  boxShadow: 'none',
-                  mr: 1,
-                  '&:hover': { background: '#FFF3C0', border: 'none' }
-                }}
-              >
-                Grid View
-              </Button> */}
               <GSButtonView startIcon={<GSIconGridView />}>
                 Grid View
               </GSButtonView>
