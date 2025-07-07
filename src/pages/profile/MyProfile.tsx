@@ -8,6 +8,7 @@ import { GSButtonPrimary, GSButtonSecondary } from '../../shared/components/inpu
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import PasswordChangedModal from './PasswordChangedModal';
 
 interface MyProfileProps {
   open: boolean;
@@ -24,6 +25,7 @@ export const MyProfile: React.FC<MyProfileProps> = ({ open, onClose }) => {
   const [notification, setNotification] = useState(true);
   const [showOldPassword, setShowOldPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   return (
     <GSModal open={open} onClose={onClose} width={900} maxWidth={1000}>
@@ -86,7 +88,7 @@ export const MyProfile: React.FC<MyProfileProps> = ({ open, onClose }) => {
         )}
         {/* Formulario Password */}
         {tab === 'password' && (
-          <Box component="form" autoComplete="off">
+          <Box component="form" autoComplete="off" onSubmit={e => { e.preventDefault(); setShowSuccess(true); }}>
             <Box sx={{ display: 'flex', gap: 2, mb: 2 }}>
               <GSInput label="First Name" required defaultValue="Kris" sx={{ flex: 1 }} />
               <GSInput label="Last Name" required defaultValue="Land" sx={{ flex: 1 }} />
@@ -141,6 +143,7 @@ export const MyProfile: React.FC<MyProfileProps> = ({ open, onClose }) => {
           </Box>
         )}
       </Box>
+      <PasswordChangedModal open={showSuccess} onClose={() => setShowSuccess(false)} />
     </GSModal>
   );
 };
