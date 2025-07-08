@@ -5,4 +5,6 @@ export { GSTextDescription } from './GSTextDescription';
 export { GSTextBody } from './GSTextBody';
 export { GSTextStats } from './GSTextStats';
 export { GSTextDate } from './GSTextDate';
-export { GSTextUser } from './GSTextUser'; 
+export { GSTextUser } from './GSTextUser';
+export { GSKanbanColumn } from './GSKanbanColumn';
+export { GSKanbanCard } from './GSKanbanCard'; 
