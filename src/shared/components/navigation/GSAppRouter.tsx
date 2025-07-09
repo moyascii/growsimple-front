@@ -12,6 +12,7 @@ import {
   IntegrationsPage,
   TeamsPage,
   TemplatesPage,
+  TestPage,
 } from '@pages';
 
 const GSAppRouter: React.FC = () => {
@@ -30,6 +31,7 @@ const GSAppRouter: React.FC = () => {
         <Route path="/integrations" element={<IntegrationsPage />} />
         <Route path="/teams" element={<TeamsPage />} />
         <Route path="/templates" element={<TemplatesPage />} />
+        <Route path="/others/test" element={<TestPage />} />
       </Routes>
     </Router>
   );

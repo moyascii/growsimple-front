@@ -46,6 +46,8 @@ const Sidebar = ({ onCollapseChange }: SidebarProps) => {
     { key: 'Plan', label: 'Plan', icon: <GSIconPlan size="medium" filter="invert(95%) sepia(2%) saturate(200%) hue-rotate(175deg) brightness(105%) contrast(80%)" />, to: '/plan' },
     { key: 'Campaigns', label: 'Campaigns', icon: <GSIconCampaigns size="medium" filter="invert(95%) sepia(2%) saturate(200%) hue-rotate(175deg) brightness(105%) contrast(80%)" />, to: '/campaigns' },
     { key: 'Production', label: 'Production', icon: <GSIconProduction size="medium" filter="invert(95%) sepia(2%) saturate(200%) hue-rotate(175deg) brightness(105%) contrast(80%)" />, to: '/production' },
+    { key: 'Templates', label: 'Templates', icon: <GSIconTemplates size="medium" filter="invert(95%) sepia(2%) saturate(200%) hue-rotate(175deg) brightness(105%) contrast(80%)" />, to: '/templates' },
+    { key: 'Test', label: 'Test', icon: null, to: '/others/test' },
   ];
 
   const selectedKey = sidebarItems.find(item => location.pathname.startsWith(item.to))?.key;

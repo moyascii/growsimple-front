@@ -27,4 +27,7 @@ export { default as IntegrationsPage } from './integrations/Integrations';
 export { default as TeamsPage } from './teams/Teams';
 
 // Templates
-export { default as TemplatesPage } from './templates/Templates'; 
+export { default as TemplatesPage } from './templates/Templates';
+
+// Test
+export { default as TestPage } from './others/TestPage'; 
